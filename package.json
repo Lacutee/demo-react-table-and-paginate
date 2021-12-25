@@ -9,7 +9,8 @@
     "next": "latest",
     "react": "^17.0.2",
     "react-data-table-component": "^7.4.6",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-paginate": "^8.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
