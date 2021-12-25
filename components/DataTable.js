@@ -1,20 +1,11 @@
+import { useState } from 'react';
 import DataTable from 'react-data-table-component';
+import Pagination from './pagination';
 
 
 
 export default function Movie(){
-    const columns = [
-        {
-            name: 'Title',
-            selector: row => row.title,
-        },
-        {
-            name: 'Year',
-            selector: row => row.year,
-        },
-    ];
-    
-    const data = [
+    const [data, setData] = useState([
         {
             id: 1,
             title: 'Beetlejuice',
@@ -80,9 +71,25 @@ export default function Movie(){
             title: 'Dark Knight',
             year: '2004',
         },
-    ]
+    ])
+
+    // console.log(data)
+    const columns = [
+        {
+            name: 'Title',
+            selector: row => row.title,
+        },
+        {
+            name: 'Year',
+            selector: row => row.year,
+        },
+    ];
+    
+
+    
     return(
         <div className="flex flex-col w-[800px] h-[400px]">
+            
             <DataTable
                 columns={columns}
                 data={data}
@@ -92,6 +99,12 @@ export default function Movie(){
                 subHeaderAlign="right"
                 subHeaderWrap
                 pagination
+                paginationPerPage={4}
+                paginationServer={true}
+                // paginationComponentOptions={}
+                paginationComponent={()=>(
+                    <Pagination itemsPerPage={4} setItems={setData} items={data}/>
+                )}
             />
         </div>
     )
