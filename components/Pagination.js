@@ -1,32 +1,46 @@
 import ReactPaginate from "react-paginate";
 import { useState, useEffect } from "react";
+import { getEvent } from "../services/EventServices";
 
-export default function Pagination({itemsPerPage, setItems, items}){
-    const [currentItems, setCurrentItems] = useState(items);
+
+export default function Pagination({itemsPerPage, setEventPagination, count}){
+    // const [currentItems, setCurrentItems] = useState({});
     const [pageCount, setPageCount] = useState(0);
-
+    
     const [itemOffset, setItemOffset] = useState(0);
+
+    const [pageNum, setPageNum] = useState(1)
 
     useEffect(() => {
         // Fetch items from another resources.
-        const endOffset = itemOffset + itemsPerPage;
-        console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        setCurrentItems(items.slice(itemOffset, endOffset));
-        // console.log(currentItems)
-        setPageCount(Math.ceil(items.length / itemsPerPage));
-        // setItems(currentItems)
-      }, [itemOffset, itemsPerPage]);
+        // const endOffset = itemOffset + itemsPerPage;
+        // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+        // setCurrentItems(items.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(count / itemsPerPage));
+        getEvent(pageNum, 4).then(
+          async(res)=>{
+              const data = await res.json()
+              setEventPagination(data.data.rows)
+              console.log(data.data.rows)
+          }
+        )
 
-      const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % items.length;
-        // console.log(
-        //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-        // );
-        console.log(currentItems)
+
+        // setItems(currentItems)
+      }, [itemOffset]);
+
+      function handlePageClick(event){
+        // event.preventDefault();
+        const newOffset = (event.selected * itemsPerPage) % count;
+        setPageNum(event.selected+1)
+        // setEventPagination(data.data.rows)
+               
+        // console.log(currentItems)
         setItemOffset(newOffset);
-        setItems(currentItems);
+
       };
 
+    
     return(
         <ReactPaginate
             onPageChange={handlePageClick}

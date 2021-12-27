@@ -4,89 +4,44 @@ import Pagination from './pagination';
 
 
 
-export default function Movie(){
-    const [data, setData] = useState([
-        {
-            id: 1,
-            title: 'Beetlejuice',
-            year: '1988',
-        },
-        {
-            id: 2,
-            title: 'Ghostbusters',
-            year: '1984',
-        },
-        {
-            id: 3,
-            title: 'Spiderman',
-            year: '2004',
-        },
-        {
-            id: 4,
-            title: 'No Way Home',
-            year: '2021',
-        },
-        {
-            id: 5,
-            title: 'Dune',
-            year: '2021',
-        },
-        {
-            id: 6,
-            title: 'Red Notice',
-            year: '2021',
-        },
-        {
-            id: 7,
-            title: 'HawkEye',
-            year: '2021',
-        },
-        {
-            id: 8,
-            title: 'Eternal',
-            year: '2021',
-        },
-        {
-            id: 9,
-            title: 'Shang Chi',
-            year: '2021',
-        },
-        {
-            id: 10,
-            title: 'Free Guy',
-            year: '2021',
-        },
-        {
-            id: 11,
-            title: 'The Amazing Spiderman',
-            year: '2014',
-        },
-        {
-            id: 12,
-            title: 'Tenet',
-            year: '2020',
-        },
-        {
-            id: 13,
-            title: 'Dark Knight',
-            year: '2004',
-        },
-    ])
-
+export default function Movie({dataEvent, count}){
+    const [data, setData] = useState(dataEvent)
+    
     // console.log(data)
     const columns = [
         {
-            name: 'Title',
-            selector: row => row.title,
-        },
-        {
-            name: 'Year',
-            selector: row => row.year,
-        },
+            name: "Id",
+            selector: (row) => row.id,
+            maxWidth: "1%"
+          },
+          {
+            name: "Title Event",
+            selector: (row) => row.title,
+            maxWidth: "15%"
+          },
+          {
+            name: "Description",
+            selector: (row) => row.description,
+            maxWidth: "35%"
+          },
+          {
+            name: "Speaker",
+            selector: (row) => row.speaker,
+            maxWidth: "15%"
+          },
+          {
+            name: "Date",
+            selector: (row) => row.date,
+            maxWidth: "5%"
+          },
+          {
+            name: "Time",
+            selector: (row) => row.started_at,
+            maxWidth: "1%"
+          },
     ];
     
 
-    
     return(
         <div className="flex flex-col w-[800px] h-[400px]">
             
@@ -103,7 +58,7 @@ export default function Movie(){
                 paginationServer={true}
                 // paginationComponentOptions={}
                 paginationComponent={()=>(
-                    <Pagination itemsPerPage={4} setItems={setData} items={data}/>
+                    <Pagination itemsPerPage={4} setEventPagination={setData} count={count}/>
                 )}
             />
         </div>
