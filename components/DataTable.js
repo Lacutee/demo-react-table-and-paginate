@@ -4,10 +4,9 @@ import Pagination from './pagination';
 
 
 
-export default function Movie({dataEvent, count}){
+export default function Movie({dataEvent, count, perpage}){
     const [data, setData] = useState(dataEvent)
-    
-    // console.log(data)
+    const [perpageState, setPerpageState] = useState(perpage)
     const columns = [
         {
             name: "Id",
@@ -53,14 +52,12 @@ export default function Movie({dataEvent, count}){
                 responsive
                 subHeaderAlign="right"
                 subHeaderWrap
-                pagination
+                // pagination
                 paginationPerPage={4}
-                paginationServer={true}
+                // paginationServer={true}
                 // paginationComponentOptions={}
-                paginationComponent={()=>(
-                    <Pagination itemsPerPage={4} setEventPagination={setData} count={count}/>
-                )}
             />
+            <Pagination setEventPagination={setData} perpage={perpageState}/>
         </div>
     )
 }

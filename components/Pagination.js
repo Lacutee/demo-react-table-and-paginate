@@ -3,48 +3,31 @@ import { useState, useEffect } from "react";
 import { getEvent } from "../services/EventServices";
 
 
-export default function Pagination({itemsPerPage, setEventPagination, count}){
+export default function Pagination({setEventPagination, perpage}){
     // const [currentItems, setCurrentItems] = useState({});
-    const [pageCount, setPageCount] = useState(0);
-    
-    const [itemOffset, setItemOffset] = useState(0);
-
+    // const [pageCount, setPageCount] = useState(0);
     const [pageNum, setPageNum] = useState(1)
 
     useEffect(() => {
-        // Fetch items from another resources.
-        // const endOffset = itemOffset + itemsPerPage;
-        // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        // setCurrentItems(items.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(count / itemsPerPage));
+      console.log(perpage)
         getEvent(pageNum, 4).then(
           async(res)=>{
               const data = await res.json()
-              setEventPagination(data.data.rows)
               console.log(data.data.rows)
+              setEventPagination(data.data.rows)
           }
         )
-
-
-        // setItems(currentItems)
-      }, [itemOffset]);
+      }, [pageNum]);
 
       function handlePageClick(event){
-        // event.preventDefault();
-        const newOffset = (event.selected * itemsPerPage) % count;
         setPageNum(event.selected+1)
-        // setEventPagination(data.data.rows)
-               
-        // console.log(currentItems)
-        setItemOffset(newOffset);
-
       };
 
     
     return(
         <ReactPaginate
             onPageChange={handlePageClick}
-            pageCount={pageCount}
+            pageCount={perpage}
             renderOnZeroPageCount={null}
             //  real
             previousLabel={"<"}

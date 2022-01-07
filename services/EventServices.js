@@ -7,8 +7,8 @@ async function getEvent(page, per_page){
 
     const res = await fetch(url,{
         headers: {
-          Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0MCwiZW1haWwiOiJicnVub0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjQwNTc5NDIyLCJleHAiOjE2NDA2MjI2MjJ9.H0nbdd8f7UYGdqx8JsciEPEEmY9r9-SC1w155TE93MY",
-          refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0MCwiZW1haWwiOiJicnVub0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjQwNTc5NDIyLCJleHAiOjE2NDA2NjU4MjJ9.NykQ5icoMPOQ4lsi_Fk-ugLHcm9bEbYyv196bBCF51o"
+          Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozNCwiZW1haWwiOiJkZXZpbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjQxNTUwOTY2LCJleHAiOjE2NDE1OTQxNjZ9.9DWHYEE_Qky4ZAQcjYBNbeyW3-qap0F7ExNhXIf0thM",
+          refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozNCwiZW1haWwiOiJkZXZpbkBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjQxNTUwOTY2LCJleHAiOjE2NDE2MzczNjZ9.46Zriw_pLI51aMvRNwIm8Je8XJJodYN_orLGKlat_VE"
         },
     
       })
